@@ -35,8 +35,6 @@ So this bundle separates responsibilities:
 - **`gpt-slide-prompt`** → convert that plan into detailed page prompts
 - **`gpt-slide-generate`** → generate slide images sequentially and save them with page-number filenames
 
-The optional **`future-slide`** orchestrator can enforce the order `1 → 2 → 3 → 4`.
-
 ## Recommended workflow
 
 Use the skills in this exact sequence:
@@ -199,7 +197,6 @@ $gpt-slide-generate
 ## Output artifacts
 
 This bundle includes:
-- `skills/future-slide/SKILL.md`
 - `skills/gpt-slide-design/SKILL.md`
 - `skills/gpt-slide-plan/SKILL.md`
 - `skills/gpt-slide-prompt/SKILL.md`
@@ -235,12 +232,42 @@ For a full run, the typical artifact chain is:
 3. `slide_prompts.json`
 4. `page_1.png ... page_N.png`
 
-## Installation pattern
+## Installation
 
-This bundle is structured like an agent skill repo:
+### Install with `npx skills`
+
+Use the Skills CLI from a terminal with Node.js 18+:
 
 ```bash
-npx skills add /path/to/future-slide-skill
+npx skills add jyoung105/future-slide
 ```
 
-Or copy the desired skill folders into your existing skill library.
+You can also use the repository URL:
+
+```bash
+npx skills add https://github.com/jyoung105/future-slide.git
+```
+
+Restart Codex after installation so the new skills are discovered.
+
+### Manual install into `.codex`
+
+Download or clone this repository, then copy the skill folders into your
+Codex skills directory:
+
+```bash
+mkdir -p ~/.codex/skills
+cp -R skills/gpt-slide-design ~/.codex/skills/
+cp -R skills/gpt-slide-plan ~/.codex/skills/
+cp -R skills/gpt-slide-prompt ~/.codex/skills/
+cp -R skills/gpt-slide-generate ~/.codex/skills/
+```
+
+For project-local installation, copy the same folders into:
+
+```text
+.codex/skills/
+```
+
+Codex discovers skills from folders that contain `SKILL.md`, so each copied
+folder must keep its `SKILL.md` at the folder root.
