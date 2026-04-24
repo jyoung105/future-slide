@@ -168,13 +168,13 @@ $gpt-slide-generate
 Node.js 18 이상이 있는 터미널에서 실행합니다.
 
 ```bash
-npx skills add jyoung105/future-slide
+npx skills add jyoung105/future-slide-skill
 ```
 
 또는 GitHub 주소를 그대로 사용할 수 있습니다.
 
 ```bash
-npx skills add https://github.com/jyoung105/future-slide.git
+npx skills add https://github.com/jyoung105/future-slide-skill.git
 ```
 
 설치 후에는 Codex를 다시 시작해야 새 스킬이 보입니다.

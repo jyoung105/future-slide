@@ -254,13 +254,13 @@ For a full run, the typical artifact chain is:
 Use the Skills CLI from a terminal with Node.js 18+:
 
 ```bash
-npx skills add jyoung105/future-slide
+npx skills add jyoung105/future-slide-skill
 ```
 
 You can also use the repository URL:
 
 ```bash
-npx skills add https://github.com/jyoung105/future-slide.git
+npx skills add https://github.com/jyoung105/future-slide-skill.git
 ```
 
 Restart Codex after installation so the new skills are discovered.
