@@ -4,7 +4,6 @@
 
 ![Version](https://img.shields.io/badge/version-0.0.1-333333?style=flat-square)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-yellow.svg)](./LICENSE)
-![Codex Skills](https://img.shields.io/badge/Codex-Skills-111111?style=flat-square)
 
 Navigation: [Workflow](#recommended-workflow) | [Examples](#example-prompts) |
 [Install](#installation) | [License](#license)
