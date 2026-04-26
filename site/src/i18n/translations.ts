@@ -13,14 +13,14 @@ const en: Dict = {
   "nav.examples": "Examples",
   "nav.install": "Install",
 
-  "hero.eyebrow": "Codex Skill Bundle · v0.0.1 · Apache-2.0",
-  "hero.eyebrowScope": "Codex Skill Bundle",
   "hero.titleA": "Disciplined slide generation,",
   "hero.titleB": "one stage at a time.",
   "hero.lede":
-    "Future Slide Skill turns a reference slide image, your files, and a deck request into a strict four-stage workflow — so GPT-class models stop skipping steps and collapsing into generic decks.",
+    "Future Slide Skill turns a reference slide image, your files, and a deck request into a strict four-stage workflow, so GPT-class models stop skipping steps and collapsing into generic decks.",
   "hero.ctaInstall": "Install the skill",
-  "hero.ctaWorkflow": "See the workflow",
+  "hero.ctaSkill": "View skill",
+
+  "flow.alt": "Four-stage future-slide workflow diagram",
 
   "flow.outDesign": "DESIGN.md",
   "flow.outPlan": "slide_plan.json",
@@ -98,14 +98,14 @@ const ko: Dict = {
   "nav.examples": "예시",
   "nav.install": "설치",
 
-  "hero.eyebrow": "Codex 스킬 번들 · v0.0.1 · Apache-2.0",
-  "hero.eyebrowScope": "Codex 스킬 번들",
   "hero.titleA": "단계마다 규율 있게,",
   "hero.titleB": "흔들림 없는 슬라이드 생성.",
   "hero.lede":
     "Future Slide Skill은 참조 슬라이드 이미지, 사용자 파일, 덱 요청을 엄격한 4단계 워크플로로 묶어 줍니다. GPT 계열 모델이 단계를 건너뛰거나 일반화된 결과로 무너지지 않도록 강제합니다.",
   "hero.ctaInstall": "스킬 설치하기",
-  "hero.ctaWorkflow": "워크플로 보기",
+  "hero.ctaSkill": "스킬 보러가기",
+
+  "flow.alt": "4단계 future-slide 워크플로 다이어그램",
 
   "flow.outDesign": "DESIGN.md",
   "flow.outPlan": "slide_plan.json",
