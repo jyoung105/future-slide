@@ -32,6 +32,8 @@
   /* shadcn / semantic — light */
   --background: var(--neutral-50);
   --foreground: var(--neutral-950);
+  --vignette-start: transparent;
+  --vignette-end: var(--neutral-100);
   --card: #ffffff;
   --card-foreground: var(--neutral-950);
   --popover: #ffffff;
@@ -65,6 +67,8 @@
 .dark {
   --background: var(--neutral-950);
   --foreground: var(--neutral-50);
+  --vignette-start: transparent;
+  --vignette-end: var(--neutral-950);
   --card: var(--neutral-900);
   --card-foreground: var(--neutral-50);
   --popover: var(--neutral-800);
@@ -122,8 +126,10 @@
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 0.25rem);
 
-  --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --font-sans: "Barlow", "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Poppins", "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --font-grotesk: "Anton", "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
@@ -142,7 +148,6 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-    font-feature-settings: "cv11", "ss01";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -152,32 +157,65 @@
   body {
     margin: 0;
     background: var(--background);
+    background-image: radial-gradient(
+      circle at center,
+      var(--vignette-start) 0%,
+      var(--vignette-end) 100%
+    );
+    background-attachment: fixed;
     color: var(--foreground);
     font-size: 16px;
     line-height: 1.55;
-    letter-spacing: -0.005em;
+    letter-spacing: -0.02em;
+    overflow-wrap: anywhere;
     transition:
       background-color 200ms ease,
       color 200ms ease;
   }
 
   ::selection {
-    background: var(--accent);
-    color: var(--accent-foreground);
+    background: #f5e8e2;
+    color: #7a4534;
+  }
+  .dark ::selection {
+    background: #c97d63;
+    color: #000000;
   }
 
   h1,
   h2,
-  h3 {
-    font-family: var(--font-serif);
-    font-weight: 500;
-    letter-spacing: -0.02em;
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.04em;
     color: var(--foreground);
   }
+}
 
-  /* Korean polish */
-  :where([lang="ko"]) body { letter-spacing: -0.01em; }
-  :where([lang="ko"]) h1   { letter-spacing: -0.03em; }
+/* Mobile: drop fixed vignette to avoid jank on iOS scroll */
+@media (pointer: coarse), (max-width: 768px) {
+  body { background-attachment: scroll; }
+}
+
+/* Language-aware line-breaking (mirrors tonylee.im) */
+:root[lang="ko"] {
+  word-break: keep-all;
+}
+:root[lang="ko"] body {
+  letter-spacing: 0;
+  font-family:
+    "Pretendard Variable", "Pretendard",
+    "Barlow", "Helvetica Neue", Helvetica, Arial,
+    ui-sans-serif, system-ui, sans-serif;
+}
+:root[lang="ko"] :is(h1, h2, h3, h4, h5, h6) {
+  letter-spacing: 0;
+  font-family:
+    "Pretendard Variable", "Pretendard",
+    "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @media (prefers-reduced-motion: reduce) {
