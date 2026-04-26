@@ -12,7 +12,7 @@
 - Author site: https://tonylee.im
 - Repository: https://github.com/jyoung105/future-slide-skill
 - License: Apache-2.0
-- Version: 0.0.1
+- Version: 0.0.2
 - Languages: English (default), Korean (auto-detected)
 
 ## What This Project Is

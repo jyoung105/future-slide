@@ -17,7 +17,7 @@ export function Hero() {
       <div className="home-dimmable-block flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-neutral-500 dark:text-neutral-300 dark:opacity-80">
         <span className="inline-flex items-center gap-1.5">
           <Clock className="h-3 w-3" weight="regular" aria-hidden />
-          <span>v0.0.1</span>
+          <span>v0.0.2</span>
         </span>
         <span aria-hidden className="text-neutral-300 dark:text-neutral-600">
           |
