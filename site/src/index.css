@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================================================================
+   Urban Loft tokens — light (default) + dark.
+   shadcn/ui consumes these via the @theme inline mappings below.
+   ========================================================================= */
+
+:root {
+  /* Neutral ramp */
+  --neutral-50:  #fafafa;
+  --neutral-100: #f0efee;
+  --neutral-200: #e0dedd;
+  --neutral-300: #c7c5c4;
+  --neutral-400: #9c9a9a;
+  --neutral-500: #7d7b7b;
+  --neutral-600: #605e5e;
+  --neutral-700: #464646;
+  --neutral-800: #2c2c2c;
+  --neutral-900: #1a1a1a;
+  --neutral-950: #000000;
+
+  /* Terracotta brand ramp */
+  --terra-100: #f5e8e2;
+  --terra-300: #d99680;
+  --terra-500: #a35e47;
+  --terra-700: #7a4534;
+  --terra-900: #4a2a20;
+  --terra-light: #c97d63;
+
+  /* shadcn / semantic — light */
+  --background: var(--neutral-50);
+  --foreground: var(--neutral-950);
+  --card: #ffffff;
+  --card-foreground: var(--neutral-950);
+  --popover: #ffffff;
+  --popover-foreground: var(--neutral-950);
+  --primary: var(--terra-500);
+  --primary-foreground: #ffffff;
+  --secondary: var(--neutral-100);
+  --secondary-foreground: var(--neutral-950);
+  --muted: var(--neutral-100);
+  --muted-foreground: var(--neutral-600);
+  --accent: var(--terra-100);
+  --accent-foreground: var(--terra-700);
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: var(--neutral-200);
+  --input: var(--neutral-200);
+  --ring: var(--terra-500);
+  --outline: var(--neutral-300);
+
+  --radius: 0.5rem;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 6px 24px -10px rgba(0, 0, 0, 0.18);
+  --grid-line: rgba(0, 0, 0, 0.045);
+
+  --max-width: 1200px;
+  --page-padding: clamp(1.25rem, 5.5vw, 6rem);
+  --hero-padding: clamp(4.5rem, 9vw, 8.5rem);
+  --section-gap: clamp(4.5rem, 9vw, 8rem);
+}
+
+.dark {
+  --background: var(--neutral-950);
+  --foreground: var(--neutral-50);
+  --card: var(--neutral-900);
+  --card-foreground: var(--neutral-50);
+  --popover: var(--neutral-800);
+  --popover-foreground: var(--neutral-50);
+  --primary: var(--terra-light);
+  --primary-foreground: var(--neutral-950);
+  --secondary: var(--neutral-900);
+  --secondary-foreground: var(--neutral-50);
+  --muted: var(--neutral-900);
+  --muted-foreground: var(--neutral-400);
+  --accent: var(--terra-900);
+  --accent-foreground: var(--terra-300);
+  --destructive: #ff4d4d;
+  --destructive-foreground: var(--neutral-950);
+  --border: var(--neutral-700);
+  --input: var(--neutral-700);
+  --ring: var(--terra-light);
+  --outline: var(--neutral-400);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 12px 40px -16px rgba(0, 0, 0, 0.7);
+  --grid-line: rgba(255, 255, 255, 0.05);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-outline: var(--outline);
+
+  --color-terra-100: var(--terra-100);
+  --color-terra-300: var(--terra-300);
+  --color-terra-500: var(--terra-500);
+  --color-terra-700: var(--terra-700);
+  --color-terra-900: var(--terra-900);
+  --color-terra-light: var(--terra-light);
+
+  --radius-sm: calc(var(--radius) - 0.32rem);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 0.25rem);
+
+  --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* =========================================================================
+   Base
+   ========================================================================= */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: var(--border);
+  }
+
+  html {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-size: 16px;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--foreground);
+  }
+
+  /* Korean polish */
+  :where([lang="ko"]) body { letter-spacing: -0.01em; }
+  :where([lang="ko"]) h1   { letter-spacing: -0.03em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* Container helper used across sections */
+.container-page {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--page-padding);
+}
+
+/* Hero grid background */
+.hero-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(circle at 50% 0%, black 30%, transparent 70%);
+          mask-image: radial-gradient(circle at 50% 0%, black 30%, transparent 70%);
+}
