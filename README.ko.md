@@ -5,8 +5,9 @@
 ![Version](https://img.shields.io/badge/version-0.0.2-333333?style=flat-square)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-yellow.svg)](./LICENSE)
 
-바로가기: [사용 흐름](#기본-사용-흐름) | [예시](#예시) |
-[설치](#설치) | [라이선스](#라이선스)
+바로가기: [사용 흐름](#기본-사용-흐름) |
+[Tightened Slide](#tightened-slide-html-덱) |
+[예시](#예시) | [설치](#설치) | [라이선스](#라이선스)
 
 ![Future Slide Skill Flow](public/diagram/four-skill-flow_ko.png)
 
@@ -40,6 +41,10 @@
 - **`gpt-image-slide-plan`**: 설득 흐름, 페이지 순서, 근거 배치 설계
 - **`gpt-image-slide-prompt`**: 페이지별 생성 프롬프트 JSON 작성
 - **`gpt-image-slide-render`**: 슬라이드 이미지를 한 장씩 생성하고 저장
+
+별도 HTML 덱이 필요할 때는 **`tightened-slide`**를 독립적으로 사용합니다.
+이 스킬은 단일 `index.html` 기반의 가로 스와이프 발표 덱을 만들고,
+잠긴 레이아웃과 검증 스크립트를 기준으로 마무리합니다.
 
 ## 기본 사용 흐름
 
@@ -109,6 +114,36 @@
 
 [맨 위로](#future-slide-skill)
 
+## Tightened Slide HTML 덱
+
+`tightened-slide`는 독립적인 HTML 덱 제작 흐름입니다. 최종 결과물이
+생성 이미지가 아니라 브라우저에서 바로 여는 가로 스와이프 발표 자료일 때
+사용합니다.
+
+결과물:
+
+- `skills/tightened-slide/assets/template.html`에서 만든 `index.html`
+- 로컬 이미지와 자료를 담는 인접 `images/` 폴더
+- 키보드 이동과 정적 모드를 지원하는 브라우저용 발표 덱
+
+일반 HTML 슬라이드 흐름보다 더 엄격한 규칙을 적용합니다.
+
+- 본문 슬라이드는 등록된 `S01`부터 `S22` 레이아웃만 사용합니다.
+- 지도, 경로, 위치 관계 페이지는 `S08`과 Tightened Map Component를 사용합니다.
+- 이미지는 생성하거나 배치하기 전에 레이아웃 슬롯을 먼저 정합니다.
+- 덱 언어는 `lang`과 `data-language`로 명시합니다.
+- 전달 전 `node skills/tightened-slide/scripts/validate-deck.mjs path/to/index.html` 검증을 통과해야 합니다.
+
+예시:
+
+```text
+$tightened-slide
+새 AI 리서치 제품을 소개하는 9페이지 한국어 런치 덱을 만들어줘.
+International Klein Blue 테마를 쓰고, 히어로 이미지 페이지 하나를 포함한 뒤 최종 HTML을 검증해줘.
+```
+
+[맨 위로](#future-slide-skill)
+
 ## 예시
 
 디자인 먼저 추출:
@@ -156,6 +191,7 @@ $gpt-image-slide-render
 - `skills/gpt-image-slide-plan/SKILL.md`
 - `skills/gpt-image-slide-prompt/SKILL.md`
 - `skills/gpt-image-slide-render/SKILL.md`
+- `skills/tightened-slide/SKILL.md`
 - `templates/DESIGN_TEMPLATE.md`
 
 [맨 위로](#future-slide-skill)
@@ -178,6 +214,15 @@ npx skills add https://github.com/jyoung105/future-slide-skill.git
 
 설치 후에는 Codex를 다시 시작해야 새 스킬이 보입니다.
 
+### Codex에 설치를 요청하는 프롬프트
+
+Codex에서 바로 설치를 요청하려면 아래처럼 말할 수 있습니다.
+
+```text
+future-slide-skill 저장소에서 tightened-slide 스킬을 설치해줘.
+설치 후 Codex에서 $tightened-slide 명령을 사용할 수 있게 해줘.
+```
+
 ### `.codex` 폴더에 직접 설치
 
 저장소를 다운로드하거나 클론한 뒤, 원하는 스킬 폴더를 Codex 스킬 폴더로
@@ -189,6 +234,7 @@ cp -R skills/slide-design ~/.codex/skills/
 cp -R skills/gpt-image-slide-plan ~/.codex/skills/
 cp -R skills/gpt-image-slide-prompt ~/.codex/skills/
 cp -R skills/gpt-image-slide-render ~/.codex/skills/
+cp -R skills/tightened-slide ~/.codex/skills/
 ```
 
 프로젝트 안에서만 쓰고 싶다면 아래 위치에 복사합니다.
