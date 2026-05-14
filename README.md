@@ -5,8 +5,9 @@
 ![Version](https://img.shields.io/badge/version-0.0.2-333333?style=flat-square)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-yellow.svg)](./LICENSE)
 
-Navigation: [Workflow](#recommended-workflow) | [Examples](#example-prompts) |
-[Install](#installation) | [License](#license)
+Navigation: [Workflow](#recommended-workflow) |
+[Tightened Slide](#tightened-slide-html-decks) |
+[Examples](#example-prompts) | [Install](#installation) | [License](#license)
 
 ![Future Slide Skill Flow](public/diagram/four-skill-flow.png)
 
@@ -50,6 +51,10 @@ So this bundle separates responsibilities:
 - **`$gpt-image-slide-plan`** → only create `slide_plan.json`
 - **`$gpt-image-slide-prompt`** → only create `slide_prompts.json`
 - **`$gpt-image-slide-render`** → only render `page_1.png ... page_N.png`
+
+### Tightened Slide command
+
+- **`$tightened-slide`** → build a single-file HTML horizontal-swipe deck with locked layouts, strict grid rules, image-slot discipline, and validation
 
 ## Recommended workflow
 
@@ -95,6 +100,35 @@ This step is intentionally separate so generation can:
 - inspect each page one by one
 - preserve deck consistency across outputs
 - save project-bound assets explicitly instead of leaving them in tool cache
+
+[Back to top](#future-slide-skill)
+
+## Tightened Slide HTML decks
+
+`tightened-slide` is an independent HTML deck workflow. Use it when the target is
+a polished horizontal-swipe presentation rather than generated page images.
+
+It produces:
+
+- `index.html` from `skills/tightened-slide/assets/template.html`
+- an adjacent `images/` folder for local deck assets
+- a browser-ready presentation with keyboard navigation and static mode
+
+The skill is intentionally stricter than the general HTML slide workflow:
+
+- body slides must use the registered `S01` to `S22` layouts
+- maps and route/location pages should use `S08` with the Tightened Map Component
+- images must be assigned to known layout slots before prompting or placement
+- deck language is set explicitly with `lang` and `data-language`
+- delivery requires `node skills/tightened-slide/scripts/validate-deck.mjs path/to/index.html`
+
+Example:
+
+```text
+$tightened-slide
+Create a 9-page Korean launch deck for a new AI research product.
+Use the International Klein Blue theme, include one hero image page, and validate the final HTML.
+```
 
 [Back to top](#future-slide-skill)
 
@@ -222,6 +256,7 @@ This bundle includes:
 - `skills/gpt-image-slide-plan/SKILL.md`
 - `skills/gpt-image-slide-prompt/SKILL.md`
 - `skills/gpt-image-slide-render/SKILL.md`
+- `skills/tightened-slide/SKILL.md`
 - `templates/DESIGN_TEMPLATE.md`
 
 ## Current skill responsibilities
@@ -285,6 +320,7 @@ cp -R skills/slide-design ~/.codex/skills/
 cp -R skills/gpt-image-slide-plan ~/.codex/skills/
 cp -R skills/gpt-image-slide-prompt ~/.codex/skills/
 cp -R skills/gpt-image-slide-render ~/.codex/skills/
+cp -R skills/tightened-slide ~/.codex/skills/
 ```
 
 For project-local installation, copy the same folders into:
